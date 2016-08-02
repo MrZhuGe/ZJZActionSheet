@@ -54,7 +54,7 @@ static const CGFloat actionSheetTime = 0.4f;
     if (self) {
         UIWindow *keyWindow = [self currentKeyWindow];
         self.frame = keyWindow.frame;
-        self.backgroundColor = [UIColor clearColor];
+        self.backgroundColor = [UIColor colorWithRed:40/255.0f green:40/255.0f blue:40/255.0f alpha:0.0f];
         [keyWindow addSubview:self];
     }
     return self;
@@ -115,6 +115,7 @@ static const CGFloat actionSheetTime = 0.4f;
     
     // 执行弹出动画
     [UIView animateWithDuration:actionSheetTime animations:^{
+        self.backgroundColor = [UIColor colorWithRed:40/255.0f green:40/255.0f blue:40/255.0f alpha:0.2f];
         self.sheetView.frame = CGRectMake(0, self.frame.size.height - self.sheetHeight, self.frame.size.width, self.sheetHeight);
     }];
 }
@@ -163,6 +164,10 @@ static const CGFloat actionSheetTime = 0.4f;
         titleLabel.text = self.title;
         titleLabel.textColor = [UIColor lightGrayColor];
         titleLabel.textAlignment = NSTextAlignmentCenter;
+        
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 39.5, titleLabel.frame.size.width, 0.5)];
+        line.backgroundColor = [UIColor darkGrayColor];
+        [titleLabel addSubview:line];
         
         return titleLabel;
     }
@@ -222,6 +227,7 @@ static const CGFloat actionSheetTime = 0.4f;
 - (void)onTapGRClicked
 {
     [UIView animateWithDuration:actionSheetTime animations:^{
+        self.backgroundColor = [UIColor colorWithRed:40/255.0f green:40/255.0f blue:40/255.0f alpha:0.0f];
         self.sheetView.frame = CGRectMake(0, self.frame.size.height, self.frame.size.width, self.sheetHeight);
     } completion:^(BOOL finished) {
         [self.sheetView removeFromSuperview];
